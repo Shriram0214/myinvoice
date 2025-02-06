@@ -1,0 +1,64 @@
+<div class="login-layout r-bg-gray-lightest r-px-64 r-py-40">
+  <div class="login-screen">
+    <div class="r--m-4 r-p-4">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" name="ocm-login" method="post">
+        <raul-container add-shadow>
+         
+          <div class="r-flex r-justify-center r-mb-10">
+            <img src="https://cdn.realpage.com/images/rp-logo.svg" alt="Company Logo" />
+          </div>
+
+         
+          <div class="r-mb-6">
+            <raul-input
+              label="User Name"
+              [attr.error]="submitted && loginForm.controls['username'].invalid ? formErrors['username'] : ''"
+            >
+              <input
+                autocomplete="off"
+                type="text"
+                formControlName="username"
+                name="loginname"
+                placeholder="RRI Login name."
+              />
+            </raul-input>
+            <div *ngIf="submitted && loginForm.controls['username'].invalid" class="error-text">
+              {{ formErrors['username'] }}
+            </div>
+          </div>
+
+          
+          <div class="r-mb-6">
+            <raul-input
+              label="Password"
+              [attr.error]="submitted && loginForm.controls['password'].invalid ? formErrors['password'] : ''"
+            >
+              <input
+                autocomplete="off"
+                type="password"
+                formControlName="password"
+                name="password"
+                placeholder="Enter Password"
+              />
+            </raul-input>
+            <div *ngIf="submitted && loginForm.controls['password'].invalid" class="error-text">
+              {{ formErrors['password'] }}
+            </div>
+          </div>
+
+          
+          <div class="r-mb-4">
+            <raul-button class="r-w-full" type="submit" variant="primary" [disabled]="loading">
+              <span *ngIf="!loading">Login</span>
+              <span *ngIf="loading">Logging in...</span>
+            </raul-button>
+          </div>
+        </raul-container>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<raul-page-loader id="page-loader-example" *ngIf="loading"></raul-page-loader>
+
